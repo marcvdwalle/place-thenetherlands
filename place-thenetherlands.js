@@ -24,7 +24,8 @@ const draw = seconds => {
             }
             console.log("Drawing at " + ax + ", " + ay + " (https://www.reddit.com/r/place/#x=" + ax + "&y=" + ay + ")");
             $.ajax({ url: "https://www.reddit.com/api/place/draw.json", type: "POST",
-                headers: { "x-modhash": modhash }, data: { x: ax, y: ay, color: flagColor }
+                headers: { "x-modhash": modhash }, data: { x: ax, y: ay, color: flagColor },
+				contentType: 'application/json'
             })
             .done(data => draw(data.wait_seconds))
             .error(data => draw(data.responseJSON.wait_seconds));
